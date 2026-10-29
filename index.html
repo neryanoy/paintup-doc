@@ -1,0 +1,11 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Toronto Painters - your document</title>
+<style>body{font-family:system-ui,sans-serif;max-width:480px;margin:12vh auto;padding:0 20px;text-align:center;color:#222}</style></head>
+<body><h2>Toronto Painters</h2><p id="m">Opening your document...</p>
+<script>
+var d=new URLSearchParams(location.search).get("d")||location.hash.slice(1);
+fetch("tunnel.json?"+Date.now()).then(function(r){return r.json()}).then(function(t){
+ if(!d||!/^[\w\-\/.]+$/.test(d)){document.getElementById("m").textContent="Link incomplete. Please email sales@torontopainters.ca";return;}
+ location.replace(t.url+"/share/"+d);
+}).catch(function(){document.getElementById("m").textContent="Please try again in a minute, or email sales@torontopainters.ca / call 519-500-4286.";});
+</script></body></html>
