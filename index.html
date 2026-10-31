@@ -5,7 +5,9 @@
 <script>
 var d=new URLSearchParams(location.search).get("d")||location.hash.slice(1);
 fetch("tunnel.json?"+Date.now()).then(function(r){return r.json()}).then(function(t){
- if(!d||!/^[\w\-\/.]+$/.test(d)){document.getElementById("m").textContent="Link incomplete. Please email sales@torontopainters.ca";return;}
+ var q0=new URLSearchParams(location.search).get("q");if(!q0&&(!d||!/^[\w\-\/.]+$/.test(d))){document.getElementById("m").textContent="Link incomplete. Please email sales@torontopainters.ca";return;}
+ var q=new URLSearchParams(location.search).get("q");
+ if(q&&/^[\w\-]+$/.test(q)){var ty=new URLSearchParams(location.search).get("type");location.replace(t.url+"/q/"+q+(ty&&/^\w+$/.test(ty)?"?type="+ty:""));return;}
  location.replace(t.url+"/share/"+d);
 }).catch(function(){document.getElementById("m").textContent="Please try again in a minute, or email sales@torontopainters.ca / call 519-500-4286.";});
 </script></body></html>
